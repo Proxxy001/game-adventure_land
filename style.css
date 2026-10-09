@@ -1,0 +1,243 @@
+/* Core & Cocomelon-style Defaults */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+:root {
+    --sky-blue: #87CEEB;
+    --bright-yellow: #FFDE00;
+    --bright-pink: #FF69B4;
+    --bright-green: #32CD32;
+    --bright-orange: #FFA500;
+    --bright-blue: #1E90FF;
+    --white: #FFFFFF;
+    --text-dark: #333333;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    
+    /* Magical Space Background */
+    background-color: #120A2A; /* Deep space purple/blue */
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    animation: spaceDrift 60s linear infinite; /* Slowly drifting stars */
+    
+    font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Animation for the drifting stars */
+@keyframes spaceDrift {
+    from { background-position: 0 0, 40px 60px, 130px 270px, 70px 100px; }
+    to { background-position: -550px 550px, -310px 410px, -120px 520px, -80px 250px; }
+}
+
+/* Audio Panel Pinned Top Right */
+#audio-panel {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+#mute-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#vol-slider {
+    width: 80px;
+    cursor: pointer;
+}
+
+/* App Containers & Screens */
+.app-container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+.screen {
+    display: none;
+    animation: popIn 0.4s ease-out forwards;
+}
+
+.screen.active {
+    display: block;
+}
+
+h1 { font-size: 3rem; color: #fff; text-shadow: 3px 3px 0px var(--bright-orange), 0 0 10px rgba(0,0,0,0.3); }
+h2 { font-size: 2.5rem; color: #fff; text-shadow: 2px 2px 0px var(--bright-blue); }
+
+/* Buttons */
+.btn {
+    font-family: inherit;
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border: 4px solid #fff;
+    border-radius: 40px; /* Heavily rounded */
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 8px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 10px;
+    color: var(--text-dark);
+}
+
+.btn:hover {
+    transform: scale(1.1) translateY(-4px);
+    box-shadow: 0 12px 0px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: scale(0.95) translateY(4px);
+    box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+}
+
+.btn-primary { background-color: var(--bright-yellow); }
+.btn-secondary { background-color: #ddd; border-color: #999; }
+.btn-yellow { background-color: var(--bright-yellow); }
+.btn-pink { background-color: var(--bright-pink); color: white;}
+.btn-green { background-color: var(--bright-green); color: white;}
+.btn-orange { background-color: var(--bright-orange); color: white;}
+.btn-blue { background-color: var(--bright-blue); color: white;}
+.btn-submit { background-color: var(--bright-green); color: white; border-color: #fff;}
+
+.grid-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Quiz UI */
+.bubbly-box {
+    background: #fff;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+#options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.opt-btn {
+    width: 100%;
+    text-align: left;
+    background: var(--white);
+    border: 3px solid var(--bright-blue);
+    padding: 15px;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.opt-btn:hover { background: #e0f0ff; transform: scale(1.02); }
+.opt-btn.selected { background: var(--bright-yellow); border-color: var(--bright-orange); }
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.btn-nav {
+    flex: 1; /* Identically sized side-by-side */
+    font-size: 1.3rem;
+}
+
+/* Results UI */
+.score-board p { font-size: 1.8rem; margin: 10px; font-weight: bold; }
+.score-correct { color: var(--bright-green); }
+.score-wrong { color: #d9534f; }
+.score-unattempted { color: gray; }
+
+.explanation-item {
+    background: #fff;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+    border-left: 8px solid var(--bright-blue);
+}
+
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Meteor Shower Animation */
+.meteor-shower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1; /* Sits behind your app container */
+}
+
+.app-container {
+    z-index: 10; /* Keeps the game clickable above meteors */
+    position: relative;
+}
+
+.meteor {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 140px;
+    height: 3px;
+    /* Reversed gradient: bright head on the left, fading tail on the right */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), #ffffff);
+    border-radius: 0 50% 50% 0;
+    filter: drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 2px #87CEEB);
+    transform: rotate(45deg);
+    animation: fall linear infinite;
+    opacity: 0;
+}
+
+/* Individual random delays and positions for the 7 meteors */
+.meteor:nth-child(1) { top: 0%; left: 10%; animation-duration: 2.5s; animation-delay: 0s; }
+.meteor:nth-child(2) { top: 0%; left: 30%; animation-duration: 3s; animation-delay: 1.2s; }
+.meteor:nth-child(3) { top: 0%; left: 50%; animation-duration: 2.2s; animation-delay: 0.5s; }
+.meteor:nth-child(4) { top: 0%; left: 70%; animation-duration: 3.5s; animation-delay: 2s; }
+.meteor:nth-child(5) { top: 0%; left: 90%; animation-duration: 2.8s; animation-delay: 1s; }
+.meteor:nth-child(6) { top: 10%; left: 5%; animation-duration: 3.2s; animation-delay: 2.5s; }
+.meteor:nth-child(7) { top: 5%; left: 40%; animation-duration: 2.6s; animation-delay: 1.8s; }
+
+
+@keyframes fall {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100vw, 100vh) rotate(45deg);
+        opacity: 0;
+    }
+}

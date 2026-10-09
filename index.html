@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Land Quiz!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Meteor Shower Container -->
+    <div class="meteor-shower">
+        <span class="meteor"></span>
+        <span class="meteor"></span>
+        <span class="meteor"></span>
+        <span class="meteor"></span>
+        <span class="meteor"></span>
+        <span class="meteor"></span>
+        <span class="meteor"></span>
+    </div>
+    
+    <!-- Audio Control Panel -->
+    <div id="audio-panel">
+        <button id="mute-btn">🔊</button>
+        <input type="range" id="vol-slider" min="1" max="10" value="3">
+    </div>
+
+    <div class="app-container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <h1>Let's Start Adventure Land! 🌟</h1>
+            <button class="btn btn-primary" onclick="app.showScreen('grade-screen')">Play Now!</button>
+        </div>
+
+        <!-- Grade Selection -->
+        <div id="grade-screen" class="screen">
+            <h2>Choose Your Grade! 🎒</h2>
+            <div class="grid-layout" id="grade-buttons">
+                <button class="btn btn-yellow" onclick="app.selectGrade(1)">1st Grade</button>
+                <button class="btn btn-pink" onclick="app.selectGrade(2)">2nd Grade</button>
+                <button class="btn btn-green" onclick="app.selectGrade(3)">3rd Grade</button>
+                <button class="btn btn-orange" onclick="app.selectGrade(4)">4th Grade</button>
+                <button class="btn btn-blue" onclick="app.selectGrade(5)">5th Grade</button>
+            </div>
+        </div>
+
+        <!-- Subject Selection -->
+        <div id="subject-screen" class="screen">
+            <h2>Pick a Subject! 📚</h2>
+            <div class="grid-layout">
+                <button class="btn btn-pink" onclick="app.selectSubject('Maths')">Maths 🔢</button>
+                <button class="btn btn-green" onclick="app.selectSubject('EVS')">EVS 🌍</button>
+                <button class="btn btn-yellow" onclick="app.selectSubject('Hindi')">Hindi 🔠</button>
+                <button class="btn btn-orange" onclick="app.selectSubject('Science')">Science 🔬</button>
+            </div>
+            <button class="btn btn-secondary back-btn" onclick="app.showScreen('grade-screen')">Back</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <h2 id="quiz-progress">Q: 1/5</h2>
+            <div id="question-container" class="bubbly-box">
+                <h3 id="question-text">Question goes here?</h3>
+                <div id="options-container"></div>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev-btn" class="btn btn-nav" onclick="app.prevQuestion()">⬅️ Previous</button>
+                <button id="next-btn" class="btn btn-nav" onclick="app.nextQuestion()">Next ➡️</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <h2>Great Job! 🎉</h2>
+            <div class="score-board bubbly-box">
+                <p class="score-correct">✅ Correct: <span id="res-correct">0</span></p>
+                <p class="score-wrong">❌ Wrong: <span id="res-wrong">0</span></p>
+                <p class="score-unattempted">⚪ Unattempted: <span id="res-unattempted">0</span></p>
+            </div>
+            <div id="explanations-container"></div>
+            <button class="btn btn-primary" onclick="app.resetGame()">Play Again! 🔄</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
